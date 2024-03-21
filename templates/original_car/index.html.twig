@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OriginalCar index{% endblock %}
+
+{% block body %}
+    <h1>OriginalCar index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Performance</th>
+                <th>ManufacturedFrom</th>
+                <th>ManufacturedTo</th>
+                <th>Image</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for original_car in original_cars %}
+            <tr>
+                <td>{{ original_car.id }}</td>
+                <td>{{ original_car.brand }}</td>
+                <td>{{ original_car.model }}</td>
+                <td>{{ original_car.performance }}</td>
+                <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ original_car.image }}</td>
+                <td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_original_car_show', {'id': original_car.id}) }}">show</a>
+                    <a href="{{ path('app_original_car_edit', {'id': original_car.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_original_car_new') }}">Create new</a>
+{% endblock %}

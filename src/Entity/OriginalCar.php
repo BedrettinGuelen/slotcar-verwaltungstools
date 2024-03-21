@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OriginalCarRepository;
 use Doctrine\ORM\Mapping as ORM;
+Use Ulid\Ulid;
 
 #[ORM\Entity(repositoryClass: OriginalCarRepository::class)]
 class OriginalCar

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OriginalCar{% endblock %}
+
+{% block body %}
+    <h1>OriginalCar</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ original_car.id }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ original_car.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ original_car.model }}</td>
+            </tr>
+            <tr>
+                <th>Performance</th>
+                <td>{{ original_car.performance }}</td>
+            </tr>
+            <tr>
+                <th>ManufacturedFrom</th>
+                <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ManufacturedTo</th>
+                <td>{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ original_car.image }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_original_car_index') }}">back to list</a>
+
+    <a href="{{ path('app_original_car_edit', {'id': original_car.id}) }}">edit</a>
+
+    {{ include('original_car/_delete_form.html.twig') }}
+{% endblock %}

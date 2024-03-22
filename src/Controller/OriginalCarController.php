@@ -11,10 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/original/car')]
+
 class OriginalCarController extends AbstractController
 {
-    #[Route('/', name: 'app_original_car_index', methods: ['GET'])]
     public function index(OriginalCarRepository $originalCarRepository): Response
     {
         return $this->render('original_car/index.html.twig', [
@@ -22,7 +21,6 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_original_car_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $originalCar = new OriginalCar();
@@ -42,7 +40,6 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_original_car_show', methods: ['GET'])]
     public function show(OriginalCar $originalCar): Response
     {
         return $this->render('original_car/show.html.twig', [
@@ -50,7 +47,6 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_original_car_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OriginalCar $originalCar, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OriginalCarType::class, $originalCar);
@@ -68,10 +64,9 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_original_car_delete', methods: ['POST'])]
     public function delete(Request $request, OriginalCar $originalCar, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$originalCar->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$originalCar->getUlid(), $request->request->get('_token'))) {
             $entityManager->remove($originalCar);
             $entityManager->flush();
         }

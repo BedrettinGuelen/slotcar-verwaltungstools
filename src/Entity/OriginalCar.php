@@ -3,19 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\OriginalCarRepository;
+use App\Service\IDService;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-Use Ulid\Ulid;
 
 #[ORM\Entity(repositoryClass: OriginalCarRepository::class)]
 class OriginalCar
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'string')]
     private string $ulid;
 
-    #[ORM\Column(length: 50)]
-    private string $brand;
 
     #[ORM\Column(length: 100)]
     private string $model;
@@ -24,38 +23,27 @@ class OriginalCar
     private int $performance;
 
     #[ORM\Column]
-    private \DateTimeImmutable $manufacturedFrom;
+    private \DateTime $manufacturedFrom;
 
     #[ORM\Column]
-    private \DateTimeImmutable $manufacturedTo;
+    private \DateTime $manufacturedTo;
 
     #[ORM\Column(length: 255)]
     private string $image;
 
     #[ORM\Column]
-    private \DateTimeImmutable $createdAt;
+    private \DateTime $createdAt;
     #[ORM\Column]
-    private \DateTimeImmutable $updatedAt;
+    private \DateTime $updatedAt;
+
 
     public function __construct()
     {
-        $this->ulid ??= Ulid::fromTimestamp(date_timestamp_get(date_create()));
-        $this->createdAt = new \DateTimeImmutable('now');
-        $this->updatedAt = new \DateTimeImmutable('now');
+        $this->ulid ??= IDService::MakeULID(new \DateTime('now'));
+        $this->createdAt = new \DateTime('now');
+        $this->updatedAt = new \DateTime('now');
     }
 
-
-    public function getBrand(): ?string
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(string $brand): static
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
 
     public function getModel(): ?string
     {
@@ -81,24 +69,24 @@ class OriginalCar
         return $this;
     }
 
-    public function getManufacturedFrom(): ?\DateTimeImmutable
+    public function getManufacturedFrom(): ?\DateTime
     {
         return $this->manufacturedFrom;
     }
 
-    public function setManufacturedFrom(\DateTimeImmutable $manufacturedFrom): static
+    public function setManufacturedFrom(\DateTime $manufacturedFrom): static
     {
         $this->manufacturedFrom = $manufacturedFrom;
 
         return $this;
     }
 
-    public function getManufacturedTo(): ?\DateTimeImmutable
+    public function getManufacturedTo(): ?\DateTime
     {
         return $this->manufacturedTo;
     }
 
-    public function setManufacturedTo(\DateTimeImmutable $manufacturedTo): static
+    public function setManufacturedTo(\DateTime $manufacturedTo): static
     {
         $this->manufacturedTo = $manufacturedTo;
 
@@ -117,12 +105,12 @@ class OriginalCar
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -135,15 +123,14 @@ class OriginalCar
     }
 
 
-    public function getUpdatedAt(): \DateTimeImmutable
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
-
 
 }

@@ -12,33 +12,38 @@ class OriginalCar
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private string $ulid;
 
     #[ORM\Column(length: 50)]
-    private ?string $brand = null;
+    private string $brand;
 
     #[ORM\Column(length: 100)]
-    private ?string $model = null;
+    private string $model;
 
     #[ORM\Column]
-    private ?int $performance = null;
+    private int $performance;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $manufacturedFrom = null;
+    private \DateTimeImmutable $manufacturedFrom;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $manufacturedTo = null;
+    private \DateTimeImmutable $manufacturedTo;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private string $image;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private \DateTimeImmutable $createdAt;
+    #[ORM\Column]
+    private \DateTimeImmutable $updatedAt;
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->ulid ??= Ulid::fromTimestamp(date_timestamp_get(date_create()));
+        $this->createdAt = new \DateTimeImmutable('now');
+        $this->updatedAt = new \DateTimeImmutable('now');
     }
+
 
     public function getBrand(): ?string
     {
@@ -123,4 +128,22 @@ class OriginalCar
 
         return $this;
     }
+
+    public function getUlid(): string
+    {
+        return $this->ulid;
+    }
+
+
+    public function getUpdatedAt(): \DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+
 }

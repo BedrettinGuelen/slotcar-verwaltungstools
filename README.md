@@ -7,5 +7,5 @@
 * create database ```make create-database```
 * run migrations to update to latest scheme ```make migrate```
 * the project is now up&running!
-    * api:  ```http://localhost:8000```
-    * database: ```localhost:3339```
+    * api:  ```http://localhost:8889```
+    * database: ```localhost:3334```

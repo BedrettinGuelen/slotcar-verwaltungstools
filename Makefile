@@ -1,52 +1,54 @@
 install: ## Install
-	@composer install --optimize-autoloader
-	@composer dump-autoload
-	@symfony console auth:init
+	@docker-compose exec php composer install --optimize-autoloader
+	@docker-compose exec php composer dump-autoload
+	@docker-compose exec php bin/console auth:connect auth-api-web
 	@$(MAKE) cache
 
 create-database: ## Create Database
-	@symfony console doctrine:database:create
+	@docker-compose exec php bin/console doctrine:database:create
 
 validate-database: ## Create Database
-	@symfony console doctrine:schema:validate
+	@docker-compose exec php bin/console doctrine:schema:validate
 
 drop-database: ## Delete Database
-	@symfony console doctrine:database:drop --force
+	@docker-compose exec php bin/console doctrine:database:drop --force
 
 database: ## Delete Database
 	@$(MAKE) drop-database
 	@$(MAKE) create-database
 
 migrations: ## Create migrations
-	@symfony console doctrine:migrations:diff
+	@docker-compose exec php bin/console doctrine:migrations:diff
 
 migrate: ## Run migrations
-	@symfony console doctrine:migrations:migrate -n
+	@docker-compose exec php bin/console doctrine:migrations:migrate -n
+
+migrate-rollback: ## Rollback migrations
+	@docker-compose exec php bin/console doctrine:migrations:migrate prev -n
 
 fixtures: ## Load sample Data
-	@symfony console doctrine:fixtures:load -n
+	@docker-compose exec  php bin/console doctrine:fixtures:load -n
 
 update: ## Update
-	@composer update --optimize-autoloader
-	@composer dump-autoload
+	@docker-compose exec php composer update --optimize-autoloader
+	@docker-compose exec php composer dump-autoload
 	@$(MAKE) cache
 
 cache: ## Clears the cache.
-	@symfony console cache:clear
+	@docker-compose exec php bin/console cache:clear
+
+enter: ## Enter php container
+	@docker-compose exec php bash
 
 test: ## Run testsuite
-	@symfony console cache:clear -e test
-	@export XDEBUG_MODE=coverage && php vendor/bin/behat --format=junit --out=test-results --format=pretty --out=std
-	@export XDEBUG_MODE=coverage && php vendor/bin/phpunit --log-junit test-results/phpunit.xml --coverage-clover coverage/xml/phpunit.xml --coverage-html coverage/html/phpunit/
+	@docker-compose exec php vendor/bin/behat --format=junit --out=results --format=pretty --out=std
+	@docker-compose exec php vendor/bin/phpunit --log-junit results/phpunit.xml --coverage-clover coverage/xml/phpunit.xml --coverage-html coverage/html/phpunit/
 
 start: ## Start Containers
-	@symfony server:stop
 	@docker-compose up -d
-	@symfony server:start -d --no-tls
 
 stop: ## Stop Containers
 	@docker-compose stop
-	@symfony server:stop
 
 recreate: ## recreate containers
 	@$(MAKE) stop
@@ -54,5 +56,8 @@ recreate: ## recreate containers
 	@docker-compose build
 	@$(MAKE) start
 
+consume: ## start consumer for new messenger
+	@docker-compose exec php bin/console messenger:consume
+
 analyse: ## Run static code analysis
-	@php vendor/bin/phpstan analyse src
+	@docker-compose exec php vendor/bin/phpstan analyse src

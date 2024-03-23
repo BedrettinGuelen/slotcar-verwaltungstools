@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Repository\OriginalCarRepository;
 use App\Service\IDService;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OriginalCarRepository::class)]
@@ -13,29 +11,32 @@ class OriginalCar
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string')]
-    private string $ulid;
+    protected string $ulid;
 
 
     #[ORM\Column(length: 100)]
-    private string $model;
+    protected string $model;
 
     #[ORM\Column]
-    private int $performance;
+    protected int $performance;
 
     #[ORM\Column]
-    private \DateTime $manufacturedFrom;
+    protected \DateTime $manufacturedFrom;
 
     #[ORM\Column]
-    private \DateTime $manufacturedTo;
+    protected \DateTime $manufacturedTo;
 
     #[ORM\Column(length: 255)]
-    private string $image;
+    protected string $image;
 
     #[ORM\Column]
-    private \DateTime $createdAt;
+    protected \DateTime $createdAt;
     #[ORM\Column]
-    private \DateTime $updatedAt;
+    protected \DateTime $updatedAt;
 
+    #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]
+    #[ORM\JoinColumn(name: 'brand_ulid', referencedColumnName: 'ulid', onDelete: 'CASCADE')]
+    protected Brand $brand;
 
     public function __construct()
     {
@@ -131,6 +132,23 @@ class OriginalCar
     public function setUpdatedAt(\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return Brand
+     */
+    public function getBrand(): Brand
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param Brand $brand
+     */
+    public function setBrand(Brand $brand): self
+    {
+        $this->brand = $brand;
+        return $this;
     }
 
 }

@@ -1,26 +1,26 @@
 app_original_car_index:
     path: /
-    method: [ GET ]
+    methods: [ GET ]
     controller: App\Controller\OriginalCarController::index
 
 app_original_car_new:
     path: /new
-    method: [ GET, POST ]
+    methods: [ GET, POST ]
     controller: App\Controller\OriginalCarController::new
 
 app_original_car_show:
     path: /{ulid}
-    method: [ GET ]
+    methods: [ GET ]
     controller: App\Controller\OriginalCarController::show
 
 app_original_car_edit:
     path: /{ulid}/edit
-    method: [ GET, POST ]
+    methods: [ GET, POST ]
     controller: App\Controller\OriginalCarController::edit
 
 app_original_car_delete:
     path: /{ulid}
-    method: [ POST ]
+    methods: [ POST ]
     controller: App\Controller\OriginalCarController::delete
 
 

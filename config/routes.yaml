@@ -1,5 +1,27 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+app_original_car_index:
+    path: /
+    methods: [ GET ]
+    controller: App\Controller\OriginalCarController::index
+
+app_original_car_new:
+    path: /new
+    methods: [ GET, POST ]
+    controller: App\Controller\OriginalCarController::new
+
+app_original_car_show:
+    path: /{ulid}
+    methods: [ GET ]
+    controller: App\Controller\OriginalCarController::show
+
+app_original_car_edit:
+    path: /{ulid}/edit
+    methods: [ GET, POST ]
+    controller: App\Controller\OriginalCarController::edit
+
+app_original_car_delete:
+    path: /{ulid}
+    methods: [ POST ]
+    controller: App\Controller\OriginalCarController::delete
+
+
+

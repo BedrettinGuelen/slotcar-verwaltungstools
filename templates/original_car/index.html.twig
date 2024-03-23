@@ -22,7 +22,7 @@
         <tbody>
         {% for original_car in original_cars %}
             <tr>
-                <td>{{ original_car.id }}</td>
+                <td>{{ original_car.ulid }}</td>
                 <td>{{ original_car.brand }}</td>
                 <td>{{ original_car.model }}</td>
                 <td>{{ original_car.performance }}</td>
@@ -31,8 +31,8 @@
                 <td>{{ original_car.image }}</td>
                 <td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_original_car_show', {'id': original_car.id}) }}">show</a>
-                    <a href="{{ path('app_original_car_edit', {'id': original_car.id}) }}">edit</a>
+                    <a href="{{ path('app_original_car_show', {'id': original_car.ulid}) }}">show</a>
+                    <a href="{{ path('app_original_car_edit', {'id': original_car.ulid}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

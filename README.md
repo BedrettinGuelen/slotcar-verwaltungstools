@@ -8,4 +8,4 @@
 * run migrations to update to latest scheme ```make migrate```
 * the project is now up&running!
     * api:  ```http://localhost:8889```
-    * database: ```localhost:3334```
+    * database: ```localhost:3335```

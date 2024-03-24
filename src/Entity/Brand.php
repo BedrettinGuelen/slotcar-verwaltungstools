@@ -84,9 +84,23 @@ class Brand
         return $this->cars;
     }
 
-    public function addCars(OriginalCar $cars): Brand
+    public function addCars(OriginalCar $cars): static
     {
-        $this->cars->add($cars);
+        if (!$this->cars->contains($cars)) {
+            $this->cars->add($cars);
+            $cars->setBrand($this);
+        }
+        return $this;
+    }
+
+    public function removeCars(OriginalCar $cars): static
+    {
+        if ($this->cars->removeElement($cars)) {
+            // set the owning side to null (unless already changed)
+            if ($cars->getModel() === $this) {
+                $cars->setModel(null);
+            }
+        }
         return $this;
     }
 

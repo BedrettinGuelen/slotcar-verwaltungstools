@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brand{% endblock %}
+
+{% block body %}
+    <h1>Brand</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Ulid</th>
+                <td>{{ brand.ulid }}</td>
+            </tr>
+            <tr>
+                <th>BrandName</th>
+                <td>{{ brand.brandName }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ brand.createdAt ? brand.createdAt|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ brand.updatedAt ? brand.updatedAt|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_brand_index') }}">back to list</a>
+
+    <a href="{{ path('app_brand_edit', {'ulid': brand.ulid}) }}">edit</a>
+
+    {{ include('brand/_delete_form.html.twig') }}
+{% endblock %}

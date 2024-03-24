@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brand index{% endblock %}
+
+{% block body %}
+    <h1>Brand index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ulid</th>
+                <th>BrandName</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr>
+                <td>{{ brand.ulid }}</td>
+                <td>{{ brand.brandName }}</td>
+                <td>{{ brand.createdAt ? brand.createdAt|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ brand.updatedAt ? brand.updatedAt|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_brand_show', {'ulid': brand.ulid}) }}">show</a>
+                    <a href="{{ path('app_brand_edit', {'ulid': brand.ulid}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_brand_new') }}">Create new</a>
+{% endblock %}

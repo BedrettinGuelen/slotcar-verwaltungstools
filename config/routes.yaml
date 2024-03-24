@@ -1,27 +1,57 @@
-app_original_car_index:
+app_index:
     path: /
     methods: [ GET ]
     controller: App\Controller\OriginalCarController::index
 
+app_original_car_index:
+    path: /car
+    methods: [ GET ]
+    controller: App\Controller\OriginalCarController::carIndex
+
 app_original_car_new:
-    path: /new
+    path: /car/new
     methods: [ GET, POST ]
     controller: App\Controller\OriginalCarController::new
 
 app_original_car_show:
-    path: /{ulid}
+    path: /car/{ulid}
     methods: [ GET ]
     controller: App\Controller\OriginalCarController::show
 
 app_original_car_edit:
-    path: /{ulid}/edit
+    path: /car/{ulid}/edit
     methods: [ GET, POST ]
     controller: App\Controller\OriginalCarController::edit
 
 app_original_car_delete:
-    path: /{ulid}
+    path: /car/{ulid}
     methods: [ POST ]
     controller: App\Controller\OriginalCarController::delete
+
+app_brand_index:
+    path: /brand
+    methods: [ GET ]
+    controller: App\Controller\BrandController::index
+
+app_brand_new:
+    path: /brand/new
+    methods: [ GET, POST ]
+    controller: App\Controller\BrandController::new
+
+app_brand_show:
+    path: /brand/{ulid}
+    methods: [ GET ]
+    controller: App\Controller\BrandController::show
+
+app_brand_edit:
+    path: /brand/{ulid}/edit
+    methods: [ GET, POST ]
+    controller: App\Controller\BrandController::edit
+
+app_brand_delete:
+    path: /brand/{ulid}
+    methods: [ POST ]
+    controller: App\Controller\BrandController::delete
 
 
 

@@ -13,7 +13,6 @@ class OriginalCar
     #[ORM\Column(type: 'string')]
     protected string $ulid;
 
-
     #[ORM\Column(length: 100)]
     protected string $model;
 
@@ -36,7 +35,7 @@ class OriginalCar
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]
     #[ORM\JoinColumn(name: 'brand_ulid', referencedColumnName: 'ulid', onDelete: 'CASCADE')]
-    protected Brand $brand;
+    protected ?Brand $brand;
 
     public function __construct()
     {
@@ -135,17 +134,17 @@ class OriginalCar
     }
 
     /**
-     * @return Brand
+     * @return Brand|null
      */
-    public function getBrand(): Brand
+    public function getBrand(): ?Brand
     {
         return $this->brand;
     }
 
     /**
-     * @param Brand $brand
+     * @param Brand|null $brand
      */
-    public function setBrand(Brand $brand): self
+    public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
         return $this;

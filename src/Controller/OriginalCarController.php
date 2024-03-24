@@ -16,6 +16,7 @@ class OriginalCarController extends AbstractController
 {
     public function index(OriginalCarRepository $originalCarRepository): Response
     {
+        #dd($originalCarRepository->findAll());
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $originalCarRepository->findAll(),
         ]);

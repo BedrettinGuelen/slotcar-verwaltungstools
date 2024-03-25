@@ -5,30 +5,43 @@ namespace App\Controller;
 use App\Entity\OriginalCar;
 use App\Form\OriginalCarType;
 use App\Repository\OriginalCarRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 
 
 class OriginalCarController extends AbstractController
 {
-    public function index(OriginalCarRepository $originalCarRepository): Response
+    public function index(): Response
     {
-        #dd($originalCarRepository->findAll());
+        return $this->redirectToRoute('app_original_car_index');
+    }
+    public function carIndex(OriginalCarRepository $originalCarRepository): Response
+    {
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $originalCarRepository->findAll(),
         ]);
     }
 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    /**
+     * @throws \Exception
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $originalCar = new OriginalCar();
         $form = $this->createForm(OriginalCarType::class, $originalCar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if($imageFile){
+                $newImageName = $fileUploader->upload($imageFile);
+                $originalCar->setImage($newImageName);
+            }
+
             $entityManager->persist($originalCar);
             $entityManager->flush();
 
@@ -41,7 +54,8 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    public function show(OriginalCar $originalCar): Response
+    public function show(
+        OriginalCar $originalCar): Response
     {
         return $this->render('original_car/show.html.twig', [
             'original_car' => $originalCar,

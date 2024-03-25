@@ -23,7 +23,7 @@
         {% for original_car in original_cars %}
             <tr>
                 <td>{{ original_car.ulid }}</td>
-                <td>{{ original_car.brand.ulid.brandName }}</td>
+                <td>{{ original_car.brand.brandName }}</td>
                 <td>{{ original_car.model }}</td>
                 <td>{{ original_car.performance }}</td>
                 <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>

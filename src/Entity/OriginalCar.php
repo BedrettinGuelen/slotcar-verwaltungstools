@@ -40,8 +40,8 @@ class OriginalCar
     public function __construct()
     {
         $this->ulid ??= IDService::MakeULID(new \DateTime('now'));
-        $this->createdAt = new \DateTime('now');
-        $this->updatedAt = new \DateTime('now');
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
 

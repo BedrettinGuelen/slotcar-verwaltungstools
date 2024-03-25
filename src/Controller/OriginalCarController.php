@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\OriginalCar;
 use App\Form\OriginalCarType;
 use App\Repository\OriginalCarRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,13 +25,23 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    /**
+     * @throws \Exception
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $originalCar = new OriginalCar();
         $form = $this->createForm(OriginalCarType::class, $originalCar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if($imageFile){
+                $newImageName = $fileUploader->upload($imageFile);
+                $originalCar->setImage($newImageName);
+            }
+
             $entityManager->persist($originalCar);
             $entityManager->flush();
 

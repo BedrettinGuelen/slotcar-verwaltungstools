@@ -8,8 +8,10 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class OriginalCarType extends AbstractType
 {
@@ -31,11 +33,22 @@ class OriginalCarType extends AbstractType
             ->add('manufacturedTo', null, [
                 'widget' => 'single_text',
             ])
-            ->add('image')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-        ;
+            ->add('image', FileType::class, [
+                'label' => 'Car Image (JPEG, PNG, or GIF file)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image (JPEG, PNG, or GIF)',
+                    ])
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\OriginalCarRepository;
 use App\Service\IDService;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OriginalCarRepository::class)]
@@ -16,13 +18,16 @@ class OriginalCar
     #[ORM\Column(length: 100)]
     protected string $model;
 
-    #[ORM\Column]
-    protected int $performance;
+    #[ORM\Column(type: 'smallint')]
+    protected int $performancePS;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'smallint')]
+    protected int $performanceKw;
+
+    #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $manufacturedFrom;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $manufacturedTo;
 
     #[ORM\Column(length: 255)]
@@ -35,13 +40,17 @@ class OriginalCar
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]
     #[ORM\JoinColumn(name: 'brand_ulid', referencedColumnName: 'ulid', onDelete: 'CASCADE')]
-    protected ?Brand $brand;
+    protected Brand $brand;
+
+    #[ORM\OneToMany(targetEntity: ModelCar::class, mappedBy: 'originalCar')]
+    private Collection $modelCars;
 
     public function __construct()
     {
         $this->ulid ??= IDService::MakeULID(new \DateTime('now'));
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->modelCars = new ArrayCollection();
     }
 
 
@@ -57,16 +66,24 @@ class OriginalCar
         return $this;
     }
 
-    public function getPerformance(): ?int
+    public function getPerformancePS(): int
     {
-        return $this->performance;
+        return $this->performancePS;
     }
 
-    public function setPerformance(int $performance): static
+    public function setPerformancePS(int $performancePS): void
     {
-        $this->performance = $performance;
+        $this->performancePS = $performancePS;
+    }
 
-        return $this;
+    public function getPerformanceKw(): int
+    {
+        return $this->performanceKw;
+    }
+
+    public function setPerformanceKw(int $performanceKw): void
+    {
+        $this->performanceKw = $performanceKw;
     }
 
     public function getManufacturedFrom(): ?\DateTime
@@ -134,19 +151,49 @@ class OriginalCar
     }
 
     /**
-     * @return Brand|null
+     * @return Brand
      */
-    public function getBrand(): ?Brand
+    public function getBrand(): Brand
     {
         return $this->brand;
     }
 
     /**
-     * @param Brand|null $brand
+     * @param Brand $brand
      */
-    public function setBrand(?Brand $brand): self
+    public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ModelCar>
+     */
+    public function getModelCars(): Collection
+    {
+        return $this->modelCars;
+    }
+
+    public function addModelCar(ModelCar $modelCar): static
+    {
+        if (!$this->modelCars->contains($modelCar)) {
+            $this->modelCars->add($modelCar);
+            $modelCar->setOriginalCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModelCar(ModelCar $modelCar): static
+    {
+        if ($this->modelCars->removeElement($modelCar)) {
+            // set the owning side to null (unless already changed)
+            if ($modelCar->getOriginalCar() === $this) {
+                $modelCar->setOriginalCar(null);
+            }
+        }
+
         return $this;
     }
 

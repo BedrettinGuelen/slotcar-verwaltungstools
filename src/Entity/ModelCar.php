@@ -33,6 +33,25 @@ class ModelCar
     #[ORM\JoinColumn(nullable: false)]
     protected ?OriginalCar $originalCar;
 
+    #[ORM\ManyToOne(inversedBy: 'modelCars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Manufacturer $manufacturer = null;
+
+    #[ORM\ManyToOne]
+    private ?PowerConducter $powerConducter = null;
+
+    #[ORM\ManyToOne]
+    private ?Lighting $lighting = null;
+
+    #[ORM\ManyToOne]
+    private ?Chassis $chassis = null;
+
+    #[ORM\ManyToOne(inversedBy: 'modelCars')]
+    private ?BodyDesign $bodyDesign = null;
+
+    #[ORM\ManyToOne]
+    private ?Remarks $remark = null;
+
     public function __construct()
     {
         $this->ulid ??= IDService::MakeULID(new \DateTime('now'));
@@ -111,5 +130,77 @@ class ModelCar
     public function setCreatedAt(\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getManufacturer(): ?Manufacturer
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(?Manufacturer $manufacturer): static
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    public function getPowerConducter(): ?PowerConducter
+    {
+        return $this->powerConducter;
+    }
+
+    public function setPowerConducter(?PowerConducter $powerConducter): static
+    {
+        $this->powerConducter = $powerConducter;
+
+        return $this;
+    }
+
+    public function getLighting(): ?Lighting
+    {
+        return $this->lighting;
+    }
+
+    public function setLighting(?Lighting $lighting): static
+    {
+        $this->lighting = $lighting;
+
+        return $this;
+    }
+
+    public function getChassis(): ?Chassis
+    {
+        return $this->chassis;
+    }
+
+    public function setChassis(?Chassis $chassis): static
+    {
+        $this->chassis = $chassis;
+
+        return $this;
+    }
+
+    public function getBodyDesign(): ?BodyDesign
+    {
+        return $this->bodyDesign;
+    }
+
+    public function setBodyDesign(?BodyDesign $bodyDesign): static
+    {
+        $this->bodyDesign = $bodyDesign;
+
+        return $this;
+    }
+
+    public function getRemark(): ?Remarks
+    {
+        return $this->remark;
+    }
+
+    public function setRemark(?Remarks $remark): static
+    {
+        $this->remark = $remark;
+
+        return $this;
     }
 }

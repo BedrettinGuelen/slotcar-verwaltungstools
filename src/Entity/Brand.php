@@ -43,6 +43,14 @@ class Brand
     }
 
     /**
+     * @param string $ulid
+     */
+    public function setUlid(string $ulid): void
+    {
+        $this->ulid = $ulid;
+    }
+
+    /**
      * @return string
      */
     public function getBrandName(): string

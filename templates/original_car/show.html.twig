@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ original_car.image }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ original_car.image) }}" alt="{{ original_car.model }}"></td>
             </tr>
             <tr>
                 <th>CreatedAt</th>

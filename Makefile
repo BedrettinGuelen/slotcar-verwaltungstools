@@ -1,7 +1,6 @@
 install: ## Install
 	@docker-compose exec php composer install --optimize-autoloader
 	@docker-compose exec php composer dump-autoload
-	@docker-compose exec php bin/console auth:connect auth-api-web
 	@$(MAKE) cache
 
 create-database: ## Create Database

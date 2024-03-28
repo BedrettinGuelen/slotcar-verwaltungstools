@@ -53,5 +53,29 @@ app_brand_delete:
     methods: [ POST ]
     controller: App\Controller\BrandController::delete
 
+app_model_car_index:
+    path: /model/car
+    methods: [ GET ]
+    controller: App\Controller\ModelCarController::index
+
+app_model_car_new:
+    path: /model/car/new
+    methods: [ GET, POST ]
+    controller: App\Controller\ModelCarController::new
+
+app_model_car_show:
+    path: /model/car/{ulid}
+    methods: [ GET ]
+    controller: App\Controller\ModelCarController::show
+
+app_model_car_edit:
+    path: /model/car/{ulid}/edit
+    methods: [ GET, POST ]
+    controller: App\Controller\ModelCarController::edit
+
+app_model_car_delete:
+    path: /model/car/{ulid}
+    methods: [ POST ]
+    controller: App\Controller\ModelCarController::delete
 
 

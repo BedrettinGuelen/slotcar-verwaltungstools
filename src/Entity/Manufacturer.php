@@ -35,6 +35,12 @@ class Manufacturer
         $this->modelCars = new ArrayCollection();
     }
 
+    public function setUlid(string $ulid): static
+    {
+        $this->ulid = $ulid;
+        return $this;
+    }
+
     public function getUlid(): string
     {
         return $this->ulid;

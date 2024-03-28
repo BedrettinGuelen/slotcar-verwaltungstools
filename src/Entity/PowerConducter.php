@@ -28,6 +28,13 @@ class PowerConducter
         $this->updatedAt = new \DateTime();
     }
 
+    /**
+     * @param string $ulid
+     */
+    public function setUlid(string $ulid): void
+    {
+        $this->ulid = $ulid;
+    }
     public function getUlid(): string
     {
         return $this->ulid;

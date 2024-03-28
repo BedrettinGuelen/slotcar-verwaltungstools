@@ -11,7 +11,8 @@
                 <th>Id</th>
                 <th>Brand</th>
                 <th>Model</th>
-                <th>Performance</th>
+                <th>Performance PS</th>
+                <th>Performance KW</th>
                 <th>ManufacturedFrom</th>
                 <th>ManufacturedTo</th>
                 <th>Image</th>
@@ -25,7 +26,8 @@
                 <td>{{ original_car.ulid }}</td>
                 <td>{{ original_car.brand.brandName }}</td>
                 <td>{{ original_car.model }}</td>
-                <td>{{ original_car.performance }}</td>
+                <td>{{ original_car.performancePS }}</td>
+                <td>{{ original_car.performanceKW }}</td>
                 <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ original_car.image }}</td>

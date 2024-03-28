@@ -14,7 +14,7 @@ class ModelCar
     #[ORM\Column(type: 'string')]
     protected string $ulid;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::FLOAT, precision: 10, scale: 2)]
     protected float $scale;
 
     #[ORM\Column(type: 'datetimetz')]
@@ -30,26 +30,31 @@ class ModelCar
     protected \DateTime $createdAt;
 
     #[ORM\ManyToOne(targetEntity: OriginalCar::class, inversedBy: 'modelCars')]
-    #[ORM\JoinColumn(name: 'orginalcar_ulid', referencedColumnName: 'ulid', nullable: false)]
-    protected ?OriginalCar $originalCar;
+    #[ORM\JoinColumn(name: 'original_car_ulid', referencedColumnName: 'ulid', nullable: false)]
+    protected OriginalCar $originalCar;
 
-    #[ORM\ManyToOne(inversedBy: 'modelCars')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: ModelCar::class, inversedBy: 'modelCars')]
+    #[ORM\JoinColumn(name: 'manufacturer_ulid', referencedColumnName: 'ulid', nullable: false)]
     private ?Manufacturer $manufacturer = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: PowerConducter::class)]
+    #[ORM\JoinColumn(name: 'power_conducter_ulid', referencedColumnName: 'ulid')]
     private ?PowerConducter $powerConducter = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Lighting::class)]
+    #[ORM\JoinColumn(name: 'lighting_ulid', referencedColumnName: 'ulid')]
     private ?Lighting $lighting = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Chassis::class)]
+    #[ORM\JoinColumn(name: 'chassis_ulid', referencedColumnName: 'ulid')]
     private ?Chassis $chassis = null;
 
-    #[ORM\ManyToOne(inversedBy: 'modelCars')]
+    #[ORM\ManyToOne(targetEntity: BodyDesign::class ,inversedBy: 'modelCars')]
+    #[ORM\JoinColumn(name: 'body_design_ulid', referencedColumnName: 'ulid')]
     private ?BodyDesign $bodyDesign = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Remarks::class)]
+    #[ORM\JoinColumn(name: 'remark_ulid', referencedColumnName: 'ulid')]
     private ?Remarks $remark = null;
 
     public function __construct()
@@ -100,12 +105,12 @@ class ModelCar
         return $this;
     }
 
-    public function getOriginalCar(): ?OriginalCar
+    public function getOriginalCar(): OriginalCar
     {
         return $this->originalCar;
     }
 
-    public function setOriginalCar(?OriginalCar $originalCar): static
+    public function setOriginalCar(OriginalCar $originalCar): static
     {
         $this->originalCar = $originalCar;
 

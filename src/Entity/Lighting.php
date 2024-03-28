@@ -14,7 +14,7 @@ class Lighting
     protected string $ulid;
 
     #[ORM\Column(type: 'string')]
-    protected string $powerConducter;
+    protected string $lighting;
 
     #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $createdAt;
@@ -29,19 +29,26 @@ class Lighting
         $this->updatedAt = new \DateTime();
     }
 
+    /**
+     * @param string $ulid
+     */
+    public function setUlid(string $ulid): void
+    {
+        $this->ulid = $ulid;
+    }
     public function getUlid(): string
     {
         return $this->ulid;
     }
 
-    public function getPowerConducter(): string
+    public function getLighting(): string
     {
-        return $this->powerConducter;
+        return $this->lighting;
     }
 
-    public function setPowerConducter(string $powerConducter): void
+    public function setLighting(string $lighting): void
     {
-        $this->powerConducter = $powerConducter;
+        $this->lighting = $lighting;
     }
 
     public function getCreatedAt(): \DateTime

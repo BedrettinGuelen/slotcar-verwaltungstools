@@ -22,7 +22,7 @@ class ManufacturerRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Manufacturer[] Returns an array of Manufacturer objects
+//     * @return Manufacturers[] Returns an array of Manufacturers objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class ManufacturerRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Manufacturer
+//    public function findOneBySomeField($value): ?Manufacturers
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

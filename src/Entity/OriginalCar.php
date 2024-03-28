@@ -6,36 +6,49 @@ use App\Repository\OriginalCarRepository;
 use App\Service\IDService;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use MonterHealth\ApiFilterBundle\Attribute\ApiFilter;
+use MonterHealth\ApiFilterBundle\Filter\DateFilter;
+use MonterHealth\ApiFilterBundle\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OriginalCarRepository::class)]
+#[ORM\Table(name: "original_cars")]
 class OriginalCar
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string')]
     protected string $ulid;
 
+    #[ApiFilter(SearchFilter::class)]
     #[ORM\Column(length: 100)]
     protected string $model;
 
+    #[ApiFilter(SearchFilter::class)]
     #[ORM\Column(type: 'smallint')]
     protected int $performancePS;
 
+    #[ApiFilter(SearchFilter::class)]
     #[ORM\Column(type: 'smallint')]
     protected int $performanceKw;
 
+    #[ApiFilter(DateFilter::class)]
     #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $manufacturedFrom;
 
+    #[ApiFilter(DateFilter::class)]
     #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $manufacturedTo;
 
     #[ORM\Column(length: 255)]
+    #[ApiFilter(SearchFilter::class)]
     protected string $image;
 
     #[ORM\Column]
+    #[ApiFilter(DateFilter::class)]
     protected \DateTime $createdAt;
+
     #[ORM\Column]
+    #[ApiFilter(DateFilter::class)]
     protected \DateTime $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'cars')]

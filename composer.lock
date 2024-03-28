@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1d2e99f5dc231797836c0c64b3de43a",
+    "content-hash": "5467bcb7032fb148e79d4d00c1f4aba3",
     "packages": [
         {
             "name": "brick/math",
@@ -1527,6 +1527,50 @@
                 }
             ],
             "time": "2023-10-27T15:32:31+00:00"
+        },
+        {
+            "name": "monterhealth/api-filter-bundle",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/monterhealth/api-filter-bundle.git",
+                "reference": "6632eb74049e962d893d9cdb55ac9932c3c6932a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/monterhealth/api-filter-bundle/zipball/6632eb74049e962d893d9cdb55ac9932c3c6932a",
+                "reference": "6632eb74049e962d893d9cdb55ac9932c3c6932a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/orm-pack": "*"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^4.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "MonterHealth\\ApiFilterBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Niels Geerts",
+                    "email": "nielsgeerts@monterhealth.nl"
+                }
+            ],
+            "description": "Rest Api filter and order bundle",
+            "support": {
+                "issues": "https://github.com/monterhealth/api-filter-bundle/issues",
+                "source": "https://github.com/monterhealth/api-filter-bundle/tree/2.1.0"
+            },
+            "time": "2024-02-05T08:31:36+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4911,6 +4955,55 @@
                 }
             ],
             "time": "2023-08-08T10:20:21+00:00"
+        },
+        {
+            "name": "symfony/orm-pack",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/orm-pack.git",
+                "reference": "9d8729016b3a8b0db854c028d15c2dcf4d19b1b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/orm-pack/zipball/9d8729016b3a8b0db854c028d15c2dcf4d19b1b4",
+                "reference": "9d8729016b3a8b0db854c028d15c2dcf4d19b1b4",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3",
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/doctrine-migrations-bundle": "*",
+                "doctrine/orm": "*"
+            },
+            "conflict": {
+                "php": "<8.1"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for the Doctrine ORM",
+            "support": {
+                "issues": "https://github.com/symfony/orm-pack/issues",
+                "source": "https://github.com/symfony/orm-pack/tree/v2.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-02-13T17:58:44+00:00"
         },
         {
             "name": "symfony/password-hasher",

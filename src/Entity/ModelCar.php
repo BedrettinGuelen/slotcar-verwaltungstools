@@ -14,7 +14,7 @@ class ModelCar
     #[ORM\Column(type: 'string')]
     protected string $ulid;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale:2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     protected float $scale;
 
     #[ORM\Column(type: 'datetimetz')]
@@ -29,8 +29,8 @@ class ModelCar
     #[ORM\Column(type: 'datetimetz')]
     protected \DateTime $createdAt;
 
-    #[ORM\ManyToOne(inversedBy: 'modelCars')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: OriginalCar::class, inversedBy: 'modelCars')]
+    #[ORM\JoinColumn(name: 'orginalcar_ulid', referencedColumnName: 'ulid', nullable: false)]
     protected ?OriginalCar $originalCar;
 
     #[ORM\ManyToOne(inversedBy: 'modelCars')]

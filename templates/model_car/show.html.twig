@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModelCar{% endblock %}
+
+{% block body %}
+    <h1>ModelCar</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Ulid</th>
+                <td>{{ model_car.ulid }}</td>
+            </tr>
+            <tr>
+                <th>Scale</th>
+                <td>{{ model_car.scale }}</td>
+            </tr>
+            <tr>
+                <th>ManufacturedFrom</th>
+                <td>{{ model_car.manufacturedFrom ? model_car.manufacturedFrom|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ManufacturedTo</th>
+                <td>{{ model_car.manufacturedTo ? model_car.manufacturedTo|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ model_car.updatedAt ? model_car.updatedAt|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ model_car.createdAt ? model_car.createdAt|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_model_car_index') }}">back to list</a>
+
+    <a href="{{ path('app_model_car_edit', {'ulid': model_car.ulid}) }}">edit</a>
+
+    {{ include('model_car/_delete_form.html.twig') }}
+{% endblock %}

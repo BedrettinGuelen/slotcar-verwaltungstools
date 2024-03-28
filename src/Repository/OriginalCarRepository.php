@@ -3,24 +3,30 @@
 namespace App\Repository;
 
 use App\Entity\OriginalCar;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
-/**
- * @extends ServiceEntityRepository<OriginalCar>
- *
- * @method OriginalCar|null find($id, $lockMode = null, $lockVersion = null)
- * @method OriginalCar|null findOneBy(array $criteria, array $orderBy = null)
- * @method OriginalCar[]    findAll()
- * @method OriginalCar[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class OriginalCarRepository extends ServiceEntityRepository
+class OriginalCarRepository extends EntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @template-extends EntityRepository<OriginalCar>
+     */
+    public function __construct(EntityManagerInterface $registry)
     {
-        parent::__construct($registry, OriginalCar::class);
+        parent::__construct($registry, $registry->getClassMetadata(OriginalCar::class));
     }
 
+    public function findAllQueryBuilder(): QueryBuilder
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->select(array('car'))
+            ->from('App\Entity\OriginalCar', 'car');
+
+        return $qb;
+    }
     //    /**
     //     * @return OriginalCar[] Returns an array of OriginalCar objects
     //     */

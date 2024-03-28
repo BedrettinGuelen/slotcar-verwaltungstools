@@ -38,6 +38,9 @@
             "migrations/.gitignore"
         ]
     },
+    "monterhealth/api-filter-bundle": {
+        "version": "2.1.0"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

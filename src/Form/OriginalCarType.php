@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -27,7 +28,14 @@ class OriginalCarType extends AbstractType
                 },
                 'choice_label' => 'brand_name'])
             ->add('model')
-            ->add('performance')
+            ->add('performancePS', IntegerType::class, [
+                'label' => 'Performance PS  ',
+                'data' => 431
+            ])
+            ->add('performanceKW', IntegerType::class, [
+                'label' => 'Performance KW  ',
+                'data' => 317
+            ])
             ->add('manufacturedFrom', DateTimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Manufactured from',

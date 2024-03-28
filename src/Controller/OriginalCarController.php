@@ -6,20 +6,37 @@ use App\Entity\OriginalCar;
 use App\Form\OriginalCarType;
 use App\Repository\OriginalCarRepository;
 use App\Service\FileUploader;
+use App\Service\OriginalCarService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use MonterHealth\ApiFilterBundle\MonterHealthApiFilter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
 class OriginalCarController extends AbstractController
 {
+   public function __construct(
+       protected OriginalCarService $carService,
+       protected FileUploader $fileUploader
+   )
+   {
+   }
+
     public function index(): Response
     {
         return $this->redirectToRoute('app_original_car_index');
     }
-    public function carIndex(OriginalCarRepository $originalCarRepository): Response
+    public function carIndex(Request $request, OriginalCarRepository $originalCarRepository): Response
     {
+        $brand = $request->query->getString('brand', '');
+        $model = $request->query->getString('model', '');
+        $page = $request->query->getInt('page', 1);
+        $limit = $request->query->getInt('limit', 10);
+
+        $cars = $this->carService->getFilteredCars($brand,$model, $page, $limit);
+
+
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $originalCarRepository->findAll(),
         ]);
@@ -28,7 +45,7 @@ class OriginalCarController extends AbstractController
     /**
      * @throws \Exception
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $originalCar = new OriginalCar();
         $form = $this->createForm(OriginalCarType::class, $originalCar);
@@ -38,7 +55,7 @@ class OriginalCarController extends AbstractController
             $imageFile = $form->get('image')->getData();
 
             if($imageFile){
-                $newImageName = $fileUploader->upload($imageFile);
+                $newImageName = $this->fileUploader->upload($imageFile);
                 $originalCar->setImage($newImageName);
             }
 

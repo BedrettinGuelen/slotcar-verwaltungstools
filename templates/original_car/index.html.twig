@@ -32,10 +32,10 @@
 						<td>{{ original_car.image }}</td>
 						<td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td class="text-center">
-							<a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}" class="me-m1">
+							<a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}" class="me-m1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bearbeiten">
 								<i class="bi bi-pencil-square"></i>
 							</a>
-							<a href="{{ path('app_original_car_delete', {'ulid': original_car.ulid}) }}">
+							<a href="{{ path('app_original_car_delete', {'ulid': original_car.ulid}) }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Entfernen">
 								<i class="bi bi-trash"></i>
 							</a>
 						</td>

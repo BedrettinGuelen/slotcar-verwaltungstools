@@ -1,0 +1,29 @@
+@import "../utils/variables";
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @extend .bg-light, .bg-gradient;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "OpenSans", sans-serif;
+  display: grid;
+  overflow-x: hidden;
+}
+.form-control:focus {
+  border-color: transparent;
+  box-shadow: none;
+  outline: 2px solid $gray-500;
+}
+
+td > a {
+  &:hover {
+    @extend .text-primary;
+  }
+}

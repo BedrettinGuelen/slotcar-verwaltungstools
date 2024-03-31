@@ -1,0 +1,55 @@
+// === Colors ===
+$primary: #a6192e;
+$secondary: #4c5166;
+$black: #3d3d3d;
+
+// === Sizing ===
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  m2: $spacer * 0.25,
+  m1: $spacer * 0.5,
+  1: $spacer,
+  2: $spacer * 1.25,
+  3: $spacer * 1.5,
+  4: $spacer * 2,
+  5: $spacer * 2.5,
+  6: $spacer * 3,
+  7: $spacer * 3.5,
+);
+
+$utilities: (
+  "viewport-width": (
+    property: width,
+    class: vw,
+    values: (
+      100: 100vw,
+      75: 75vw,
+      50: 50vw,
+      20: 20vw,
+      10: 10vw,
+    ),
+  ),
+  "min-viewport-width": (
+    property: min-width,
+    class: min-vw,
+    values: (
+      100: 100vw,
+      75: 75vw,
+      50: 50vw,
+      20: 20vw,
+      10: 10vw,
+    ),
+  ),
+);
+
+// === Table ===
+$table-cell-padding-x: 0.75rem;
+$table-cell-padding-y: 0.75rem;
+
+// === Pagination ===
+$pagination-color: $secondary;
+$pagination-active-bg: $secondary;
+$pagination-active-border-color: $secondary;
+$pagination-hover-color: $secondary;
+$pagination-disabled-color: rgba(0, 0, 0, 0.25);

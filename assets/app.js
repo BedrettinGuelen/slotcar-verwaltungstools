@@ -1,5 +1,4 @@
 
 import './styles/app.scss';
 
-import 'bootstrap';
-import './javascripts/main'
+import './javascripts/main';

@@ -14,8 +14,24 @@ body {
   min-height: 100vh;
   font-family: "OpenSans", sans-serif;
   display: grid;
+  grid-template-rows: 80px 1fr;
   overflow-x: hidden;
 }
+
+header {
+  grid-row: 1 / 2;
+}
+
+main {
+  grid-row: 2 / 3;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
 .form-control:focus {
   border-color: transparent;
   box-shadow: none;

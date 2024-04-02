@@ -1,50 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OriginalCar{% endblock %}
+{% set pageTitle = "Details" %}
 
-{% block body %}
-    <h1>OriginalCar</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ original_car.ulid }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ original_car.brand.brandName }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ original_car.model }}</td>
-            </tr>
-            <tr>
-                <th>Performance</th>
-                <td>{{ original_car.performance }}</td>
-            </tr>
-            <tr>
-                <th>ManufacturedFrom</th>
-                <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ManufacturedTo</th>
-                <td>{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td><img src="{{ asset('uploads/images/' ~ original_car.image) }}" alt="{{ original_car.model }}"></td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_original_car_index') }}">back to list</a>
-
-    <a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}">edit</a>
-
-    {{ include('original_car/_delete_form.html.twig') }}
+{% block main %}
+	<a href="{{ path('app_original_car_index') }}" class="btn btn-outline-secondary ms-5 mb-4">
+		<i class="bi bi-box-arrow-left me-m1"></i>Zurück</a>
+	<div class="card mx-auto" style="width: 600px">
+		<img src="{{ asset('uploads/images/' ~ original_car.image) }}" class="card-img-top" alt="Image of the car">
+		<div class="card-body">
+			<h3 class="card-title text-primary">{{ original_car.brand.brandName }}</h3>
+			<h5 class="card-subtitle mb-2 text-body-secondary">{{ original_car.model }}</h5>
+			<p class="card-text">
+				<strong>Baujarh:</strong>
+				{{ original_car.manufacturedFrom|date('Y') }}
+				-
+				{{original_car.manufacturedTo|date('Y') }}
+			</p>
+			<p class="card-text">
+				<strong>Leistung:</strong>
+				{{ original_car.performance }}
+				kW
+			</p>
+			<div class="w-100 d-flex justify-content-center align-items-center mt-4">
+				<a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}" class="card-link btn btn-primary d-inline-block">Bearbeiten</a>
+				<span class="card-link d-inline-block">{{ include('original_car/_delete_form.html.twig') }}</span>
+			</div>
+		</div>
+	</div>
 {% endblock %}

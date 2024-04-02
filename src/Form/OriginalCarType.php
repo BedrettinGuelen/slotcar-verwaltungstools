@@ -10,6 +10,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -21,20 +23,26 @@ class OriginalCarType extends AbstractType
         $builder
             ->add('brand', EntityType::class, [
                 'class' => Brand::class,
+                'label' => "Marke",
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('b')
                         ->orderBy('b.brandName', 'ASC');
                 },
                 'choice_label' => 'brand_name'])
-            ->add('model')
-            ->add('performance')
+            ->add('model', TextType::class, [
+                'label' => 'Typenbezeichnung',
+            ]) 
+            ->add('performance', NumberType::class, [
+                'html5' => true,
+                'label' => 'Leistung',
+            ])
             ->add('manufacturedFrom', DateTimeType::class, [
                 'widget' => 'single_text',
-                'label' => 'Manufactured from',
+                'label' => 'Hergestellt von',
             ])
             ->add('manufacturedTo', DateTimeType::class, [
                 'widget' => 'single_text',
-                'label' => 'Manufactured to',
+                'label' => 'Hergestellt bis',
             ])
             ->add('image', FileType::class, [
                 'label' => 'Car Image (JPEG, PNG, or GIF file)',

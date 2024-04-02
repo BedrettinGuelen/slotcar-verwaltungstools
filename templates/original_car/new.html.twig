@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New OriginalCar{% endblock %}
+{% set pageTitle = "New Original Car" %}
 
-{% block body %}
-    <h1>Create new OriginalCar</h1>
-
-    {{ include('original_car/_form.html.twig') }}
-
-    <a href="{{ path('app_original_car_index') }}">back to list</a>
+{% block main %}
+	<article class="w-50 mx-auto bg-white p-4 border border-2 border-bg-primary-subtle rounded-4">
+		{{ include('original_car/_form.html.twig') }}
+	</article>
 {% endblock %}

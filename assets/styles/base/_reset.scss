@@ -1,0 +1,45 @@
+@import "../utils/variables";
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @extend .bg-light, .bg-gradient;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "OpenSans", sans-serif;
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  overflow-x: hidden;
+}
+
+header {
+  grid-row: 1 / 2;
+}
+
+main {
+  grid-row: 2 / 3;
+  width: 100%;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  @extend .text-primary;
+  font-weight: 600;
+}
+
+.form-control:focus {
+  border-color: transparent;
+  box-shadow: none;
+  outline: 2px solid $gray-500;
+}

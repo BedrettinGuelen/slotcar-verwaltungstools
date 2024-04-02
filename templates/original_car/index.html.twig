@@ -1,47 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OriginalCar index{% endblock %}
+{% set pageTitle = "Übersicht" %}
 
-{% block body %}
-    <h1>OriginalCar index</h1>
+{% block main %}
+	<article class="w-100 overflow-hidden rounded-2">
+		<table class="table table-hover m-0 p-0">
+			<thead>
+				<tr class="table-primary bg-gradient align-middle">
+					<th>Nr.</th>
+					<th>Marke</th>
+					<th>Typen-<br>bezeichnung</th>
+					<th>Leistung</th>
+					<th>Baujahr</th>
+					<th>Image</th>
+					<th>Created At</th>
+					<th class="text-center">Aktionen</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for original_car in original_cars %}
+					<tr class="align-middle">
+						<td>
+							<a href="{{ path('app_original_car_show', {'ulid': original_car.ulid}) }}" class="text-decoration-underline fw-semibold">{{ loop.index > 10 ?: "0"~loop.index}}</a>
+						</td>
+						<td>{{ original_car.brand.brandName }}</td>
+						<td>{{ original_car.model }}</td>
+						<td>{{ original_car.performance }}</td>
+						<td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y') : '' }}
+							-
+							{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y') : ''  }}</td>
+						<td>{{ original_car.image }}</td>
+						<td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td class="text-center">
+							<a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}" class="me-m1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Bearbeiten">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+							<a href="{{ path('app_original_car_delete', {'ulid': original_car.ulid}) }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Entfernen">
+								<i class="bi bi-trash"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</article>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Performance</th>
-                <th>ManufacturedFrom</th>
-                <th>ManufacturedTo</th>
-                <th>Image</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for original_car in original_cars %}
-            <tr>
-                <td>{{ original_car.ulid }}</td>
-                <td>{{ original_car.brand.brandName }}</td>
-                <td>{{ original_car.model }}</td>
-                <td>{{ original_car.performance }}</td>
-                <td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ original_car.image }}</td>
-                <td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_original_car_show', {'ulid': original_car.ulid}) }}">show</a>
-                    <a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_original_car_new') }}">Create new</a>
 {% endblock %}

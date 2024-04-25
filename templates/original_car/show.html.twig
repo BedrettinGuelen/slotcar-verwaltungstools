@@ -18,8 +18,11 @@
 			</p>
 			<p class="card-text">
 				<strong>Leistung:</strong>
-				{{ original_car.performance }}
-				kW
+				{{ original_car.performancePS }}
+				PS /
+				{{ original_car.performanceKW }}
+				KW
+
 			</p>
 			<div class="w-100 d-flex justify-content-center align-items-center mt-4">
 				<a href="{{ path('app_original_car_edit', {'ulid': original_car.ulid}) }}" class="card-link btn btn-primary d-inline-block">Bearbeiten</a>

@@ -25,7 +25,10 @@
 						</td>
 						<td>{{ original_car.brand.brandName }}</td>
 						<td>{{ original_car.model }}</td>
-						<td>{{ original_car.performance }}</td>
+						<td>{{ original_car.performancePS }}
+							PS /
+							{{ original_car.performancePS }}
+							kW</td>
 						<td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y') : '' }}
 							-
 							{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y') : ''  }}</td>

@@ -32,9 +32,13 @@ class OriginalCarType extends AbstractType
             ->add('model', TextType::class, [
                 'label' => 'Typenbezeichnung',
             ]) 
-            ->add('performance', NumberType::class, [
+            ->add('performancePS', NumberType::class, [
                 'html5' => true,
-                'label' => 'Leistung',
+                'label' => 'Leistung in PS',
+            ])
+            ->add('performanceKW', NumberType::class, [
+                'html5' => true,
+                'label' => 'Leistung in KW',
             ])
             ->add('manufacturedFrom', DateTimeType::class, [
                 'widget' => 'single_text',

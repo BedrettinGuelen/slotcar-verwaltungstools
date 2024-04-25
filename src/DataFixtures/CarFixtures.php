@@ -50,6 +50,7 @@ class CarFixtures extends Fixture
             '911 gt3',
             '01HT008NHYB79T1Z581BZJYVYD',
             1000,
+            736,
             '1963',
             'now',
             'porsche-911-3341697_1280.jpg',
@@ -58,7 +59,8 @@ class CarFixtures extends Fixture
         $this->createCar(
             '488 Gtb',
             '01HT00ABABBE6BNEXXXWTXDXBE',
-            1000,
+            950,
+            699,
             '2015',
             'now',
             'ferrari-488-4345304_1280.jpg',
@@ -67,7 +69,8 @@ class CarFixtures extends Fixture
         $this->createCar(
             'Testarossa',
             '01HT00ABABBE6BNEXXXWTXDXBE',
-            1000,
+            860,
+            632,
             '1984',
             '1996',
             'Ferrari-Testarossa.jpg',
@@ -76,7 +79,8 @@ class CarFixtures extends Fixture
         $this->createCar(
             'R8',
             '01HT0091V7HWGE2FQC5306QM83',
-            1000,
+            755,
+            555,
             '1989',
             '1995',
             'audi-r8-v10-plus-1555775_1280.jpg',
@@ -85,7 +89,8 @@ class CarFixtures extends Fixture
         $this->createCar(
             '911 gt3',
             '01HT008NHYB79T1Z581BZJYVYD',
-            1000,
+            810,
+            596,
             '1963',
             'now',
             'porsche-911-3341697_1280.jpg',
@@ -94,7 +99,8 @@ class CarFixtures extends Fixture
         $this->createCar(
             '348',
             '01HT00ABABBE6BNEXXXWTXDXBE',
-            1000,
+            825,
+            607,
             '1989',
             '1995',
             'ferrari-348-2927398_1280.jpg',
@@ -121,7 +127,8 @@ class CarFixtures extends Fixture
     protected function createCar(
         string $model,
         string $brand_ulid,
-        int    $performance,
+        int    $performancePS,
+        int    $performanceKW,
         string $manufacturedFrom,
         string $manufacturedTo,
         string $image,
@@ -130,7 +137,8 @@ class CarFixtures extends Fixture
     {
         $car = new OriginalCar();
         $car->setModel($model);
-        $car->setPerformance($performance);
+        $car->setPerformancePS($performancePS);
+        $car->setPerformanceKW($performanceKW);
         $car->setManufacturedFrom(new \DateTime($manufacturedFrom));
         $car->setManufacturedTo(new \DateTime($manufacturedTo));
         $car->setImage($image);

@@ -17,7 +17,10 @@ class OriginalCar
     protected string $model;
 
     #[ORM\Column]
-    protected int $performance;
+    protected int $performancePS;
+
+    #[ORM\Column]
+    protected int $performanceKW;
 
     #[ORM\Column]
     protected \DateTime $manufacturedFrom;
@@ -57,15 +60,32 @@ class OriginalCar
         return $this;
     }
 
-    public function getPerformance(): ?int
+    public function getPerformancePS(): ?int
     {
-        return $this->performance;
+        return $this->performancePS;
     }
 
-    public function setPerformance(int $performance): static
+    public function setPerformancePS(int $performancePS): static
     {
-        $this->performance = $performance;
+        $this->performancePS = $performancePS;
 
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerformanceKW(): int
+    {
+        return $this->performanceKW;
+    }
+
+    /**
+     * @param int $performanceKW
+     */
+    public function setPerformanceKW(int $performanceKW): static
+    {
+        $this->performanceKW = $performanceKW;
         return $this;
     }
 

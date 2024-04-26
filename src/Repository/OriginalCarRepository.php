@@ -56,8 +56,6 @@ class OriginalCarRepository extends ServiceEntityRepository
         if ($search){
             $qb
                 ->andWhere('car.model Like :searchTerm')
-                ->orWhere('car.manufacturedFrom Like :searchTerm')
-                ->orWhere('car.manufacturedTo Like :searchTerm')
                 ->orWhere('brand.brandName Like :searchTerm')
                 ->setParameter('searchTerm', '%'.$search.'%');
         }

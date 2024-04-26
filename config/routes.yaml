@@ -8,6 +8,11 @@ app_original_car_index:
     methods: [ GET ]
     controller: App\Controller\OriginalCarController::carIndex
 
+app_original_car_search:
+    path: /car/search
+    methods: [ GET ]
+    controller: App\Controller\OriginalCarController::searchCar
+
 app_original_car_new:
     path: /car/new
     methods: [ GET, POST ]

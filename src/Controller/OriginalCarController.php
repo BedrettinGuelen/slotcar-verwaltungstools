@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\SearchRequestDto;
 use App\Entity\OriginalCar;
 use App\Form\OriginalCarType;
 use App\Repository\OriginalCarRepository;
@@ -10,10 +11,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class OriginalCarController extends AbstractController
 {
+    public function __construct(protected EntityManagerInterface $entityManager)
+    {
+    }
+
     public function index(): Response
     {
         return $this->redirectToRoute('app_original_car_index');
@@ -22,6 +28,16 @@ class OriginalCarController extends AbstractController
     {
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $originalCarRepository->findAll(),
+        ]);
+    }
+
+    public function searchCar(OriginalCarRepository $repository, Request $request): Response
+    {
+        $searchTerm = $request->query->get('q');
+        $searchedCars = $repository->findSearchedCar($searchTerm);
+
+        return $this->render('original_car/index.html.twig', [
+            'original_cars' => $searchedCars,
         ]);
     }
 

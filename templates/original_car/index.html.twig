@@ -3,6 +3,17 @@
 {% set pageTitle = "Übersicht" %}
 
 {% block main %}
+	<article>
+		<form action="{{ path('app_original_car_search') }}">
+			<input
+					type="search"
+					name="q"
+					class="form-control"
+					placeholder="Search..."
+					aria-label="Search"
+			>
+		</form>
+	</article>
 	<article class="w-100 overflow-hidden rounded-2">
 		<table class="table table-hover m-0 p-0">
 			<thead>

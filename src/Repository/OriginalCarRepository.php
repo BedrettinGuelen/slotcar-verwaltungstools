@@ -45,4 +45,23 @@ class OriginalCarRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findSearchedCar(string $search = null): array
+    {
+        $qb = $this->createQueryBuilder('car')
+            ->orderBy('car.createdAt', 'DESC')
+            ->innerJoin('car.brand', 'brand')
+            ->addSelect('brand');
+
+        if ($search){
+            $qb
+                ->andWhere('car.model Like :searchTerm')
+                ->orWhere('car.manufacturedFrom Like :searchTerm')
+                ->orWhere('car.manufacturedTo Like :searchTerm')
+                ->orWhere('brand.brandName Like :searchTerm')
+                ->setParameter('searchTerm', '%'.$search.'%');
+        }
+
+        return $qb->setMaxResults(10)->getQuery()->getResult();
+    }
 }

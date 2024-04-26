@@ -5,13 +5,10 @@
 {% block main %}
 	<article>
 		<form action="{{ path('app_original_car_search') }}">
-			<input
-					type="search"
-					name="q"
-					class="form-control"
-					placeholder="Search..."
-					aria-label="Search"
-			>
+			<input type="search" name="q" class="form-control" placeholder="Search..." aria-label="Search">
+			<input type="number" name="manufacturedFrom" class="form-control" placeholder="Hergestellt ab (Jahr)" aria-label="Hergestellt ab (Jahr)">
+			<input type="number" name="manufacturedTo" class="form-control" placeholder="Hergestellt bis (Jahr)" aria-label="Hergestellt bis (Jahr)">
+			<button type="submit" class="btn btn-primary">Suchen</button>
 		</form>
 	</article>
 	<article class="w-100 overflow-hidden rounded-2">
@@ -40,9 +37,13 @@
 							PS /
 							{{ original_car.performancePS }}
 							kW</td>
-						<td>{{ original_car.manufacturedFrom ? original_car.manufacturedFrom|date('Y') : '' }}
+						<td>{% if original_car.manufacturedFrom %}
+								{{ original_car.manufacturedFrom }}
+							{% endif %}
 							-
-							{{ original_car.manufacturedTo ? original_car.manufacturedTo|date('Y') : ''  }}</td>
+							{% if original_car.manufacturedTo %}
+								{{ original_car.manufacturedTo }}
+							{% endif %}</td>
 						<td>{{ original_car.image }}</td>
 						<td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td class="text-center">

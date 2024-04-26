@@ -23,10 +23,10 @@ class OriginalCar
     protected int $performanceKW;
 
     #[ORM\Column]
-    protected \DateTime $manufacturedFrom;
+    protected ?int $manufacturedFrom;
 
     #[ORM\Column]
-    protected \DateTime $manufacturedTo;
+    protected ?int $manufacturedTo;
 
     #[ORM\Column(length: 255)]
     protected string $image;
@@ -89,24 +89,24 @@ class OriginalCar
         return $this;
     }
 
-    public function getManufacturedFrom(): ?\DateTime
+    public function getManufacturedFrom(): ?int
     {
         return $this->manufacturedFrom;
     }
 
-    public function setManufacturedFrom(\DateTime $manufacturedFrom): static
+    public function setManufacturedFrom(?int $manufacturedFrom): static
     {
         $this->manufacturedFrom = $manufacturedFrom;
 
         return $this;
     }
 
-    public function getManufacturedTo(): ?\DateTime
+    public function getManufacturedTo(): ?int
     {
         return $this->manufacturedTo;
     }
 
-    public function setManufacturedTo(\DateTime $manufacturedTo): static
+    public function setManufacturedTo(?int $manufacturedTo): static
     {
         $this->manufacturedTo = $manufacturedTo;
 

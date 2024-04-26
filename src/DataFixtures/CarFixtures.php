@@ -51,8 +51,8 @@ class CarFixtures extends Fixture
             '01HT008NHYB79T1Z581BZJYVYD',
             1000,
             736,
-            '1963',
-            'now',
+            1963,
+            2024,
             'porsche-911-3341697_1280.jpg',
             '6 days',
         );
@@ -61,8 +61,8 @@ class CarFixtures extends Fixture
             '01HT00ABABBE6BNEXXXWTXDXBE',
             950,
             699,
-            '2015',
-            'now',
+            2015,
+            2024,
             'ferrari-488-4345304_1280.jpg',
             '12 days',
         );
@@ -71,8 +71,8 @@ class CarFixtures extends Fixture
             '01HT00ABABBE6BNEXXXWTXDXBE',
             860,
             632,
-            '1984',
-            '1996',
+            1984,
+            1996,
             'Ferrari-Testarossa.jpg',
             '6 days',
         );
@@ -81,8 +81,8 @@ class CarFixtures extends Fixture
             '01HT0091V7HWGE2FQC5306QM83',
             755,
             555,
-            '1989',
-            '1995',
+            1989,
+            1995,
             'audi-r8-v10-plus-1555775_1280.jpg',
             '12 minutes',
         );
@@ -91,8 +91,8 @@ class CarFixtures extends Fixture
             '01HT008NHYB79T1Z581BZJYVYD',
             810,
             596,
-            '1963',
-            'now',
+            1963,
+            2024,
             'porsche-911-3341697_1280.jpg',
             '6 days',
         );
@@ -101,8 +101,8 @@ class CarFixtures extends Fixture
             '01HT00ABABBE6BNEXXXWTXDXBE',
             825,
             607,
-            '1989',
-            '1995',
+            1989,
+            1995,
             'ferrari-348-2927398_1280.jpg',
             '12 minutes',
         );
@@ -129,8 +129,8 @@ class CarFixtures extends Fixture
         string $brand_ulid,
         int    $performancePS,
         int    $performanceKW,
-        string $manufacturedFrom,
-        string $manufacturedTo,
+        int $manufacturedFrom,
+        int $manufacturedTo,
         string $image,
         string $dateOffset
     ): void
@@ -139,8 +139,8 @@ class CarFixtures extends Fixture
         $car->setModel($model);
         $car->setPerformancePS($performancePS);
         $car->setPerformanceKW($performanceKW);
-        $car->setManufacturedFrom(new \DateTime($manufacturedFrom));
-        $car->setManufacturedTo(new \DateTime($manufacturedTo));
+        $car->setManufacturedFrom($manufacturedFrom);
+        $car->setManufacturedTo($manufacturedTo);
         $car->setImage($image);
         $car->setUpdatedAt(new \DateTime($dateOffset));
         $car->setCreatedAt(new \DateTime($dateOffset));

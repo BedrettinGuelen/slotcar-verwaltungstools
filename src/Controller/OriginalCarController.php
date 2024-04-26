@@ -34,7 +34,9 @@ class OriginalCarController extends AbstractController
     public function searchCar(OriginalCarRepository $repository, Request $request): Response
     {
         $searchTerm = $request->query->get('q');
-        $searchedCars = $repository->findSearchedCar($searchTerm);
+        $manufacturedFrom = $request->query->get('manufacturedFrom');
+        $manufacturedTo = $request->query->get('manufacturedTo');
+        $searchedCars = $repository->findSearchedCar($searchTerm, intval($manufacturedFrom), intval($manufacturedTo));
 
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $searchedCars,

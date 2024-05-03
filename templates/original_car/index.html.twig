@@ -11,6 +11,18 @@
 			<button type="submit" class="btn btn-primary">Suchen</button>
 		</form>
 	</article>
+	<div class="input-group mb-3">
+		<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Suchen</button>
+		<ul class="dropdown-menu">
+			<li>
+				<a class="dropdown-item" href="#">Car</a>
+			</li>
+			<li>
+				<a class="dropdown-item" href="#">Baujahr</a>
+			</li>
+		</ul>
+		<input type="text" class="form-control" aria-label="Text input with dropdown button">
+	</div>
 	<article class="w-100 overflow-hidden rounded-2">
 		<table class="table table-hover m-0 p-0">
 			<thead>
@@ -37,13 +49,15 @@
 							PS /
 							{{ original_car.performancePS }}
 							kW</td>
-						<td>{% if original_car.manufacturedFrom %}
+						<td>
+							{% if original_car.manufacturedFrom %}
 								{{ original_car.manufacturedFrom }}
 							{% endif %}
 							-
 							{% if original_car.manufacturedTo %}
 								{{ original_car.manufacturedTo }}
-							{% endif %}</td>
+							{% endif %}
+						</td>
 						<td>{{ original_car.image }}</td>
 						<td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td class="text-center">

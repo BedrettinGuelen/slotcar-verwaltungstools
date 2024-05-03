@@ -54,11 +54,11 @@
 							kW</td>
 						<td>
 							{% if original_car.manufacturedFrom %}
-								{{ original_car.manufacturedFrom }}
+								{{ original_car.manufacturedFrom|date('Y') }}
 							{% endif %}
 							-
 							{% if original_car.manufacturedTo %}
-								{{ original_car.manufacturedTo }}
+								{{ original_car.manufacturedTo|date('Y') }}
 							{% endif %}
 						</td>
 						<td>{{ original_car.image }}</td>

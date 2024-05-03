@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -40,13 +40,15 @@ class OriginalCarType extends AbstractType
                 'html5' => true,
                 'label' => 'Leistung in KW',
             ])
-            ->add('manufacturedFrom', DateTimeType::class, [
+            ->add('manufacturedFrom', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Hergestellt von',
+                'format' => 'yyyy-MM-dd',
             ])
-            ->add('manufacturedTo', DateTimeType::class, [
+            ->add('manufacturedTo', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Hergestellt bis',
+                'format' => 'yyyy-MM-dd',
             ])
             ->add('image', FileType::class, [
                 'label' => 'Car Image (JPEG, PNG, or GIF file)',

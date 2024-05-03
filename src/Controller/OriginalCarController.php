@@ -31,13 +31,13 @@ class OriginalCarController extends AbstractController
 
     public function searchCar(OriginalCarRepository $repository, Request $request): Response
     {
-        $searchTerm = $request->query->get('q');
-        $manufacturedFrom = $request->query->get('manufacturedFrom');
-        $manufacturedTo = $request->query->get('manufacturedTo');
-        $searchedCars = $repository->findSearchedCar($searchTerm, intval($manufacturedFrom), intval($manufacturedTo));
+        $searchTerm = $request->query->get('car');
+        $manufacturedYear = $request->query->get('manufacturedYear');
+        $searchedCars = $repository->findSearchedCar(trim($searchTerm," "), intval($manufacturedYear));
 
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $searchedCars,
+            'isSearch' => true,
         ]);
     }
 

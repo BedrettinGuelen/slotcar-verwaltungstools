@@ -3,14 +3,29 @@
 {% set pageTitle = "Übersicht" %}
 
 {% block main %}
-	<article>
+	{# <article>
 		<form action="{{ path('app_original_car_search') }}">
-			<input type="search" name="q" class="form-control" placeholder="Search..." aria-label="Search">
-			<input type="number" name="manufacturedFrom" class="form-control" placeholder="Hergestellt ab (Jahr)" aria-label="Hergestellt ab (Jahr)">
-			<input type="number" name="manufacturedTo" class="form-control" placeholder="Hergestellt bis (Jahr)" aria-label="Hergestellt bis (Jahr)">
+			<input type="search" name="q" class="form-control" placeholder="Search..." aria-label="Search car">
+			<input type="number" name="manufacturedYear" class="form-control" placeholder="Hergestellt in Jahr" aria-label="Search manufactured year">
 			<button type="submit" class="btn btn-primary">Suchen</button>
 		</form>
-	</article>
+	</article> #}
+	<div class="input-group mb-3">
+		<button class="btn btn-outline-secondary dropdown-toggle search-input__dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Suchen</button>
+		<ul class="dropdown-menu">
+			<li>
+				<span class="dropdown-item search-input__active --car">Auto</span>
+			</li>
+			<li>
+				<span class="dropdown-item search-input__active --year">Baujahr</span>
+			</li>
+		</ul>
+		<form action="{{ path('app_original_car_search') }}" class="flex-grow-1 d-flex align-items-center">
+			<input type="text" name="car" class="form-control search-input is-show" placeholder="Marken oder Typenbezeichnung" aria-label="Search car">
+			<input type="number" name="manufacturedYear" class="form-control search-input" placeholder="Hergestellt in Jahr" aria-label="Search manufactured year">
+		 	<button type="submit" class="btn btn-primary order-3">Suchen</button>
+		</form>
+	</div>
 	<article class="w-100 overflow-hidden rounded-2">
 		<table class="table table-hover m-0 p-0">
 			<thead>
@@ -37,13 +52,15 @@
 							PS /
 							{{ original_car.performancePS }}
 							kW</td>
-						<td>{% if original_car.manufacturedFrom %}
-								{{ original_car.manufacturedFrom }}
+						<td>
+							{% if original_car.manufacturedFrom %}
+								{{ original_car.manufacturedFrom|date('Y') }}
 							{% endif %}
 							-
 							{% if original_car.manufacturedTo %}
-								{{ original_car.manufacturedTo }}
-							{% endif %}</td>
+								{{ original_car.manufacturedTo|date('Y') }}
+							{% endif %}
+						</td>
 						<td>{{ original_car.image }}</td>
 						<td>{{ original_car.createdAt ? original_car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td class="text-center">
@@ -63,5 +80,10 @@
 			</tbody>
 		</table>
 	</article>
+
+	{% if isSearch is defined %}
+	<a href="{{path('app_index')}}" class="btn btn-secondary mt-2">Zurück</a>
+	{% endif %}
+
 
 {% endblock %}

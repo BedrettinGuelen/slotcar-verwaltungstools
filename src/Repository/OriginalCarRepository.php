@@ -46,7 +46,7 @@ class OriginalCarRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findSearchedCar(?string $search = null, ?int $manufacturedFrom = null, ?int $manufacturedTo = null): array
+    public function findSearchedCar(?string $search = null, ?int $manufacturedyear = null): array
     {
         $qb = $this->createQueryBuilder('car')
             ->orderBy('car.createdAt', 'DESC')
@@ -60,18 +60,14 @@ class OriginalCarRepository extends ServiceEntityRepository
                 ->setParameter('searchTerm', '%'.$search.'%');
         }
 
-        if($manufacturedFrom){
+        if($manufacturedyear){
             $qb
-                ->andWhere('car.manufacturedFrom > :manufacturedFrom')
-                ->setParameter('manufacturedFrom', $manufacturedFrom);
+                ->andWhere('car.manufacturedFrom <= :manufacturedYear')
+                ->andWhere('car.manufacturedTo >= :manufacturedYear')
+                ->setParameter('manufacturedYear', $manufacturedyear);
         }
 
-        if($manufacturedTo){
-            $qb
-                ->andWhere('car.manufacturedTo < :manufacturedTo')
-                ->setParameter('manufacturedTo', $manufacturedTo);
-        }
-
+       
         return $qb->setMaxResults(10)->getQuery()->getResult();
     }
 }

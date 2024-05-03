@@ -1,0 +1,17 @@
+.search-input__dropdown-btn {
+  min-width: 6rem;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  order: 2;
+  &::placeholder {
+    opacity: 0.5;
+  }
+  &.is-show {
+    width: 60%;
+    opacity: 1;
+    order: 1;
+  }
+}

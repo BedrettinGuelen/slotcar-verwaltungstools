@@ -40,15 +40,13 @@ class OriginalCarType extends AbstractType
                 'html5' => true,
                 'label' => 'Leistung in KW',
             ])
-            ->add('manufacturedFrom', DateType::class, [
-                'widget' => 'single_text',
+            ->add('manufacturedFrom', NumberType::class, [
+                'html5' => true,
                 'label' => 'Hergestellt von',
-                'format' => 'yyyy-MM-dd',
             ])
-            ->add('manufacturedTo', DateType::class, [
-                'widget' => 'single_text',
+            ->add('manufacturedTo', NumberType::class, [
+                'html5' => true,
                 'label' => 'Hergestellt bis',
-                'format' => 'yyyy-MM-dd',
             ])
             ->add('image', FileType::class, [
                 'label' => 'Car Image (JPEG, PNG, or GIF file)',

@@ -2,9 +2,16 @@
 	<a href="{{path('app_index')}}" class="text-white fs-2 header__link">
 		<i class="bi bi-car-front me-m1"></i>
 	</a>
+	{% if brands is defined %}
+		<a href="{{ path('app_brand_new') }}" class="text-white fs-2 header__link" data-bs-toggle="tooltip" data-bs-title="Hinzufügen">
+			<i class="bi bi-plus-circle-dotted me-m1"></i>
+		</a>
+	{% else %}
+		<a href="{{ path('app_original_car_new') }}" class="text-white fs-2 header__link" data-bs-toggle="tooltip" data-bs-title="Hinzufügen">
+			<i class="bi bi-plus-circle-dotted me-m1"></i>
+		</a>
+	{% endif %}
 
-	<a href="{{ path('app_original_car_new') }}" class="text-white fs-2 header__link" data-bs-toggle="tooltip" data-bs-title="Hinzufügen">
-		<i class="bi bi-plus-circle-dotted me-m1"></i>
-	</a>
+
 	<h1 class="position-absolute translate-middle text-white top-50 start-50">{{ pageTitle }}</h1>
 </header>

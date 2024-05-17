@@ -1,0 +1,12 @@
+#add-new-brand-btn {
+  width: 1.5rem;
+  margin-left: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  & > i {
+    @extend .bi, .bi-plus-circle-dotted;
+    scale: 1.2;
+  }
+}

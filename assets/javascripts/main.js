@@ -20,3 +20,27 @@ $$(".search-input__active").forEach((btn) => {
     }
   });
 });
+
+// add new brand button in new car form
+const addNewBtnHTMLs = `
+<a href="/brand/new" id="add-new-brand-btn">
+  <i></i>
+</a>
+`;
+
+const brandSelectEl = $("#original_car_brand");
+
+if (brandSelectEl) {
+  // Create new parent
+  const newParent = document.createElement("div");
+  const iconElement = document.createElement("i");
+
+  newParent.className = "d-flex align-items-center";
+
+  // Append brandSelectEl and new element to new parent
+  newParent.appendChild(brandSelectEl.cloneNode(true));
+  newParent.insertAdjacentHTML("beforeend", addNewBtnHTMLs);
+
+  // Replace brandSelectEl with new parent
+  brandSelectEl.replaceWith(newParent);
+}

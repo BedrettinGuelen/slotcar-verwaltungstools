@@ -2,11 +2,11 @@
 {{ form_widget(form) }}
 
 <div class="w-100 d-flex justify-content-center align-items-center gap-3">
-	<a href="{{ path('app_original_car_index') }}" class="btn btn-outline-secondary me-auto">
-		<i class="bi bi-box-arrow-left me-m1"></i>Zurück</a>
-	{% if "edit" in app.current_route %}
-		{{ include('brand/_delete_form.html.twig') }}
-	{% endif %}
-	<button class="btn btn-primary">{{ button_label|default('Speichern') }}</button>
+    <button onclick="window.history.back()" class="btn btn-outline-secondary me-auto">
+        <i class="bi bi-box-arrow-left me-1"></i>Zurück</button>
+    {% if "edit" in app.current_route %}
+        {{ include('brand/_delete_form.html.twig') }}
+    {% endif %}
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Speichern') }}</button>
 </div>
 {{ form_end(form) }}

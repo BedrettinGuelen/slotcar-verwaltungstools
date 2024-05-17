@@ -30,7 +30,7 @@ class BrandController extends AbstractController
             $entityManager->persist($brand);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_original_car_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_original_car_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('brand/new.html.twig', [

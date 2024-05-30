@@ -27,7 +27,6 @@ const addNewBtnHTMLs = `
   <i></i>
 </a>
 `;
-
 const brandSelectEl = $("#original_car_brand");
 
 if (brandSelectEl) {

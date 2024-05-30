@@ -4,29 +4,29 @@ install: ## Install
 	@$(MAKE) cache
 
 create-database: ## Create Database
-	@docker-compose exec php bin/console doctrine:database:create
+	@docker-compose exec php php bin/console doctrine:database:create
 
 validate-database: ## Create Database
-	@docker-compose exec php bin/console doctrine:schema:validate
+	@docker-compose exec php php bin/console doctrine:schema:validate
 
 drop-database: ## Delete Database
-	@docker-compose exec php bin/console doctrine:database:drop --force
+	@docker-compose exec php php bin/console doctrine:database:drop --force
 
 database: ## Delete Database
 	@$(MAKE) drop-database
 	@$(MAKE) create-database
 
 migrations: ## Create migrations
-	@docker-compose exec php bin/console doctrine:migrations:diff
+	@docker-compose exec php php bin/console doctrine:migrations:diff
 
 migrate: ## Run migrations
-	@docker-compose exec php bin/console doctrine:migrations:migrate -n
+	@docker-compose exec php php bin/console doctrine:migrations:migrate -n
 
 migrate-rollback: ## Rollback migrations
-	@docker-compose exec php bin/console doctrine:migrations:migrate prev -n
+	@docker-compose exec php php bin/console doctrine:migrations:migrate prev -n
 
 fixtures: ## Load sample Data
-	@docker-compose exec  php bin/console doctrine:fixtures:load -n
+	@docker-compose exec  php php bin/console doctrine:fixtures:load -n
 
 update: ## Update
 	@docker-compose exec php composer update --optimize-autoloader
@@ -34,7 +34,7 @@ update: ## Update
 	@$(MAKE) cache
 
 cache: ## Clears the cache.
-	@docker-compose exec php bin/console cache:clear
+	@docker-compose exec php php bin/console cache:clear
 
 enter: ## Enter php container
 	@docker-compose exec php bash
@@ -58,7 +58,7 @@ recreate: ## recreate containers
 	@$(MAKE) start
 
 consume: ## start consumer for new messenger
-	@docker-compose exec php bin/console messenger:consume
+	@docker-compose exec php php bin/console messenger:consume
 
 analyse: ## Run static code analysis
 	@docker-compose exec php vendor/bin/phpstan analyse src

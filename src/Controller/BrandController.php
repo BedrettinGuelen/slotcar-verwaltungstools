@@ -13,22 +13,31 @@ use Symfony\Component\HttpFoundation\Response;
 
 class BrandController extends AbstractController
 {
-    public function index(BrandRepository $brandRepository): Response
+
+    public function __construct(
+        protected EntityManagerInterface $entityManager
+    )
     {
+    }
+
+    public function index(): Response
+    {
+        $brandRepository = $this->entityManager->getRepository(Brand::class);
+
         return $this->render('brand/index.html.twig', [
             'brands' => $brandRepository->findAll(),
         ]);
     }
 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request): Response
     {
         $brand = new Brand();
         $form = $this->createForm(BrandType::class, $brand);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($brand);
-            $entityManager->flush();
+            $this->entityManager->persist($brand);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_original_car_new', [], Response::HTTP_SEE_OTHER);
         }
@@ -39,20 +48,32 @@ class BrandController extends AbstractController
         ]);
     }
 
-    public function show(Brand $brand): Response
+    public function show(string $ulid): Response
     {
+        $brand = $this->entityManager->getRepository(Brand::class)->find($ulid);
+
+        if (!$brand) {
+            throw $this->createNotFoundException('The brand does not exist');
+        }
+
         return $this->render('brand/show.html.twig', [
             'brand' => $brand,
         ]);
     }
 
-    public function edit(Request $request, Brand $brand, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, string $ulid): Response
     {
+        $brand = $this->entityManager->getRepository(Brand::class)->find($ulid);
+
+        if (!$brand) {
+            throw $this->createNotFoundException('No brand found for the given ulid ' . $ulid);
+        }
+
         $form = $this->createForm(BrandType::class, $brand);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_brand_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -63,12 +84,16 @@ class BrandController extends AbstractController
         ]);
     }
 
-    public function delete(Request $request, Brand $brand, EntityManagerInterface $entityManager): Response
+    public function delete(string $ulid): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$brand->getUlid(), $request->request->get('_token'))) {
-            $entityManager->remove($brand);
-            $entityManager->flush();
+        $brand = $this->entityManager->getRepository(Brand::class)->find($ulid);
+
+        if (!$brand) {
+            throw $this->createNotFoundException('No brand found for the given ulid ' . $ulid);
         }
+
+        $this->entityManager->remove($brand);
+        $this->entityManager->flush();
 
         return $this->redirectToRoute('app_brand_index', [], Response::HTTP_SEE_OTHER);
     }

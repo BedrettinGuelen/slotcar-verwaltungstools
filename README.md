@@ -1,8 +1,18 @@
-# Slotcar-Verwaltungstools
+# Slotcar Management Tools
+
+## Prerequisites:
+
+Before proceeding, make sure you have the following installed:
+
+- **make**: If you are using Unix or a similar operating system, `make` is usually already installed. If not, install it via your operating system's package manager.
+- **Node.js and npm for Windows**: Install Node.js and npm on your Windows system. You can do this using the Windows Package Manager (winget). To do this, run the following command in the command prompt as an administrator:
+- `winget install -e --id OpenJS.NodeJS`
+
+## Instructions:
 
 - clone this repository
 - run `cp .env.example .env`
-- install `nodejs` and `npm` for Windows (`winget install -e --id OpenJS.NodeJS`)
+- start Docker
 - run `make start`
 - install required dependencies via `make install`
 - create database `make create-database`

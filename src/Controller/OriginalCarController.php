@@ -22,18 +22,22 @@ class OriginalCarController extends AbstractController
     {
         return $this->redirectToRoute('app_original_car_index');
     }
-    public function carIndex(OriginalCarRepository $originalCarRepository): Response
+
+    public function carIndex(): Response
     {
+        $originalCarRepository = $this->entityManager->getRepository(OriginalCar::class);
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $originalCarRepository->findAll(),
         ]);
     }
 
-    public function searchCar(OriginalCarRepository $repository, Request $request): Response
+    public function searchCar( Request $request): Response
     {
+        $repository = $this->entityManager->getRepository(OriginalCar::class);
+
         $searchTerm = $request->query->get('car');
         $manufacturedYear = $request->query->get('manufacturedYear');
-        $searchedCars = $repository->findSearchedCar(trim($searchTerm," "), intval($manufacturedYear));
+        $searchedCars = $repository->findSearchedCar(trim($searchTerm, " "), intval($manufacturedYear));
 
         return $this->render('original_car/index.html.twig', [
             'original_cars' => $searchedCars,
@@ -44,7 +48,7 @@ class OriginalCarController extends AbstractController
     /**
      * @throws \Exception
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $originalCar = new OriginalCar();
         $form = $this->createForm(OriginalCarType::class, $originalCar);
@@ -53,13 +57,13 @@ class OriginalCarController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('image')->getData();
 
-            if($imageFile){
+            if ($imageFile) {
                 $newImageName = $fileUploader->upload($imageFile);
                 $originalCar->setImage($newImageName);
             }
 
-            $entityManager->persist($originalCar);
-            $entityManager->flush();
+            $this->entityManager->persist($originalCar);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_original_car_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -70,21 +74,32 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    public function show(
-        OriginalCar $originalCar): Response
+    public function show(string $ulid): Response
     {
+        $originalCar = $this->entityManager->getRepository(OriginalCar::class)->find($ulid);
+
+        if (!$originalCar) {
+            throw $this->createNotFoundException('The car does not exist');
+        }
+
         return $this->render('original_car/show.html.twig', [
             'original_car' => $originalCar,
         ]);
     }
 
-    public function edit(Request $request, OriginalCar $originalCar, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, string $ulid): Response
     {
+        $originalCar = $this->entityManager->getRepository(OriginalCar::class)->find($ulid);
+
+        if (!$originalCar) {
+            throw $this->createNotFoundException('No car does found with the given ulid ' . $ulid);
+        }
+
         $form = $this->createForm(OriginalCarType::class, $originalCar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('app_original_car_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -95,12 +110,17 @@ class OriginalCarController extends AbstractController
         ]);
     }
 
-    public function delete(Request $request, OriginalCar $originalCar, EntityManagerInterface $entityManager): Response
+    public function delete(string $ulid): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$originalCar->getUlid(), $request->request->get('_token'))) {
-            $entityManager->remove($originalCar);
-            $entityManager->flush();
+
+        $originalCar = $this->entityManager->getRepository(OriginalCar::class)->find($ulid);
+
+        if (!$originalCar) {
+            throw $this->createNotFoundException('No car does found with the given ulid ' . $ulid);
         }
+
+        $this->entityManager->remove($originalCar);
+        $this->entityManager->flush();
 
         return $this->redirectToRoute('app_original_car_index', [], Response::HTTP_SEE_OTHER);
     }

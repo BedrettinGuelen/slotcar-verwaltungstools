@@ -1,8 +1,8 @@
 app_index:
-    path: /
+    path: "/"
     controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
     defaults:
-        path: /car
+        route: "app_original_car_index"
         permanent: true
 
 app_original_car_index:

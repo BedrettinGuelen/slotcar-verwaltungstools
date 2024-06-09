@@ -1,7 +1,9 @@
 app_index:
     path: /
-    methods: [ GET ]
-    controller: App\Controller\OriginalCarController::index
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        path: /car
+        permanent: true
 
 app_original_car_index:
     path: /car

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\OriginalCar;
 use App\Form\OriginalCarType;
-use App\Repository\OriginalCarRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +15,6 @@ class OriginalCarController extends AbstractController
 {
     public function __construct(protected EntityManagerInterface $entityManager)
     {
-    }
-
-    public function index(): Response
-    {
-        return $this->redirectToRoute('app_original_car_index');
     }
 
     public function carIndex(): Response

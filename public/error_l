@@ -1,0 +1,85 @@
+[10-Jun-2024 00:31:06 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:06 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:06 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:06 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:16 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:16 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:16 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:16 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:26 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:26 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:26 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:26 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:37 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:37 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:37 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:31:37 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:36 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:36 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:36 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:36 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:37 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:37 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:38 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:38 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:39 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:40 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:40 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:40 Asia/Riyadh] PHP Warning:  require_once(/var/www/html/vendor/autoload_runtime.php): Failed to open stream: No such file or directory in /var/www/html/public/index.php on line 5
+[10-Jun-2024 00:32:40 Asia/Riyadh] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/vendor/autoload_runtime.php' (include_path='.:/opt/php83/lib/php') in /var/www/html/public/index.php:5
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/public/index.php on line 5

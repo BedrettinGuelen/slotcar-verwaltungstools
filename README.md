@@ -12,7 +12,6 @@ Before proceeding, make sure you have the following installed:
 ## Instructions:
 
 - clone this repository
-- run `cp .env.example .env`
 - start Docker
 
 - Check if the  Node.js is installed in the environment

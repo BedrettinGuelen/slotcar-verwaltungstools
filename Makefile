@@ -46,7 +46,6 @@ test: ## Run testsuite
 
 start: ## Start Containers
 	@docker-compose up -d
-	npm install -force
 	npm run dev-server
 
 stop: ## Stop Containers

@@ -1,4 +1,5 @@
 install: ## Install
+	@docker-compose up -d
 	@docker-compose exec php composer install --optimize-autoloader
 	@docker-compose exec php composer dump-autoload
 	npm install

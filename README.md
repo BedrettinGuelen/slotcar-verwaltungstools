@@ -10,7 +10,7 @@ Before proceeding, make sure you have the following installed:
 ## Instructions:
 
 - clone this repository or download the zip file and extract it
-- start Docker
+- start Docker Desktop
 
 - Check if the Node.js is installed in the environment
   `node -v ` should print example `v20.xx.xx`

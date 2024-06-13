@@ -4,12 +4,8 @@
 
 Before proceeding, make sure you have the following installed:
 
-- **make**: If you are using Unix or a similar operating system, `make` is usually already installed. If not, install it via your operating system's package manager.
 - **Docker**: Install Docker Desktop from [here](https://www.docker.com/products/docker-desktop).
-
-  ### Linux
-
-  - `sudo apt-get install make`
+- **make**: If you are using Unix or a similar operating system, `make` is usually already installed. If not, you can install it using the following commands: `sudo apt-get install make`
 
 ## Instructions:
 

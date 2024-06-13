@@ -12,7 +12,7 @@ Before proceeding, make sure you have the following installed:
 
 ## Instructions:
 
-- clone this repository
+- clone this repository or download the zip file
 - start Docker
 
 - Check if the Node.js is installed in the environment
@@ -28,6 +28,7 @@ Before proceeding, make sure you have the following installed:
   * download and install Node.js (you may need to restart the terminal)
     `nvm install --lts`
 
+- navigate to the project directory
 - install required dependencies via `make install`
 - create database `make create-database`
 - run migrations to update to latest scheme `make migrate`

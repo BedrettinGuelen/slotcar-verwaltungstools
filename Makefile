@@ -1,6 +1,7 @@
 install: ## Install
 	@docker-compose exec php composer install --optimize-autoloader
 	@docker-compose exec php composer dump-autoload
+	npm install
 	@$(MAKE) cache
 
 create-database: ## Create Database
